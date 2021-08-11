@@ -18,6 +18,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "blake2b-rs"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a89a8565807f21b913288968e391819e7f9b2f0f46c7b89549c051cccf3a2771"
+dependencies = [
+ "cc",
+ "cty",
+]
+
+[[package]]
 name = "block-buffer"
 version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -54,7 +64,7 @@ checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 name = "ckb-lib-rsa"
 version = "0.1.0"
 dependencies = [
- "blake2b-rs",
+ "blake2b-rs 0.1.5",
  "ckb-std",
  "email-rs",
  "sha2",
@@ -64,7 +74,16 @@ dependencies = [
 name = "ckb-lib-secp256k1"
 version = "0.1.0"
 dependencies = [
- "blake2b-rs",
+ "blake2b-rs 0.1.5",
+ "ckb-std",
+]
+
+[[package]]
+name = "ckb-lib-smt"
+version = "0.1.0"
+dependencies = [
+ "blake2b-rs 0.2.0",
+ "cc",
  "ckb-std",
 ]
 
@@ -97,6 +116,12 @@ checksum = "66c99696f6c9dd7f35d486b9d04d7e6e202aa3e8c40d553f2fdf5e7e0c6a71ef"
 dependencies = [
  "libc",
 ]
+
+[[package]]
+name = "cty"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7313c0d620d0cb4dbd9d019e461a4beb501071ff46ec0ab933efb4daa76d73e3"
 
 [[package]]
 name = "digest"
