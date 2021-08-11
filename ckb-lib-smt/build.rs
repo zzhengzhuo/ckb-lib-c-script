@@ -10,7 +10,7 @@ const BUF_SIZE: usize = 8 * 1024;
 const CKB_HASH_PERSONALIZATION: &[u8] = b"ckb-default-hash";
 
 fn main() {
-    let path = Path::new("./c-build/ckb_smt");
+    let path = Path::new("./lib/ckb_smt");
 
     if !path.exists() {
         // do nothing if binary is not exists

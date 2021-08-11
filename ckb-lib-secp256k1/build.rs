@@ -10,7 +10,7 @@ const BUF_SIZE: usize = 8 * 1024;
 const CKB_HASH_PERSONALIZATION: &[u8] = b"ckb-default-hash";
 
 fn main() {
-    let path = Path::new("./c-build/secp256k1_blake2b_sighash_all_dual");
+    let path = Path::new("./lib/secp256k1_blake2b_sighash_all_dual");
 
     if !path.exists() {
         // do nothing if binary is not exists

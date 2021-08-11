@@ -1,6 +1,0 @@
-[submodule "ckb-miscellaneous-scripts"]
-	path = ckb-miscellaneous-scripts
-	url = https://github.com/nervosnetwork/ckb-miscellaneous-scripts.git
-[submodule "c/deps/ckb-c-stdlib"]
-	path = c/deps/ckb-c-stdlib
-	url = https://github.com/nervosnetwork/ckb-c-stdlib.git
