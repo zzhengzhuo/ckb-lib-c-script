@@ -14,7 +14,7 @@ fn main() {
         (
             "RSA",
             // Path::new("../ckb-production-scripts/build/validate_signature_rsa"),
-            Path::new("./c-build/rsa_sighash_all"),
+            Path::new("./lib/rsa_sighash_all"),
         )
     ];
 
