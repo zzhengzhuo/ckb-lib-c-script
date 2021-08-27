@@ -6,9 +6,14 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-ckb-std = "0.7.4"
+ckb-std = { version = "0.7.4", optional = true }
 
 
 [build-dependencies]
 blake2b-rs = "0.2"
 cc = "1.0"
+
+[features]
+std = []
+no_std = ["ckb-std"]
+c_file = ["std"]
