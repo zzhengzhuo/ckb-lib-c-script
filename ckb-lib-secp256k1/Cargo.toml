@@ -17,3 +17,4 @@ blake2b-rs = "0.1.5"
 std = []
 no_std = ["ckb-std"]
 c_file = ["std"]
+default = ["no_std"]
