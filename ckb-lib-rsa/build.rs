@@ -10,13 +10,11 @@ const BUF_SIZE: usize = 8 * 1024;
 const CKB_HASH_PERSONALIZATION: &[u8] = b"ckb-default-hash";
 
 fn main() {
-    let paths = [
-        (
-            "RSA",
-            // Path::new("../ckb-production-scripts/build/validate_signature_rsa"),
-            Path::new("./lib/rsa_sighash_all"),
-        )
-    ];
+    let paths = [(
+        "RSA",
+        // Path::new("../ckb-production-scripts/build/validate_signature_rsa"),
+        Path::new("./lib/rsa_sighash_all"),
+    )];
 
     if paths.iter().find(|(_, path)| !path.exists()).is_some() {
         return;
