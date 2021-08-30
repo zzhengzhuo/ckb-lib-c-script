@@ -1,3 +1,4 @@
+#![no_std]
 #[cfg(all(feature = "std", feature = "no_std"))]
 compile_error!("feature \"no_std\" and feature \"std\" cannot be enabled at the same time");
 
