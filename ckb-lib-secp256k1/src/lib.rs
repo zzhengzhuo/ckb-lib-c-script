@@ -1,9 +1,8 @@
 #![no_std]
-
+#[cfg(all(feature = "c_file", feature = "no_std"))]
+compile_error!("feature \"no_std\" and feature \"std\" cannot be enabled at the same time");
 #[cfg(feature = "no_std")]
 extern crate alloc;
-#[cfg(feature = "std")]
-extern crate std;
 
 mod code_hashes;
 #[cfg(feature = "no_std")]
@@ -15,6 +14,6 @@ pub use libsecp256k1::*;
 
 
 #[cfg(feature = "c_file")]
-pub fn get_libsecp256k1_bin() -> std::vec::Vec<u8> {
-    include_bytes!("../lib/secp256k1_blake2b_sighash_all_dual").to_vec()
+pub fn get_libsecp256k1_bin() -> &'static [u8] {
+    include_bytes!("../lib/secp256k1_blake2b_sighash_all_dual")
 }
