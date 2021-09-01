@@ -8,8 +8,7 @@ use ckb_std::{
     debug,
     dynamic_loading_c_impl::{CKBDLContext, Symbol},
 };
-use email_rs::Email;
-use sha2::{Digest, Sha256};
+use email_rs::{Email, };
 
 const CKB_VERIFY_RSA: u32 = 1;
 /// function signature of validate_secp256k1_blake2b_sighash_all
@@ -122,19 +121,6 @@ impl LibRSA {
     pub fn verify_dkim_signature(&self, email: &Email, e: u32, n: Vec<u8>) -> Result<(), i32> {
         let dkim_msg = email.get_dkim_message();
         let dkim_header = &email.dkim_header.as_ref().unwrap();
-
-        // verify body hash
-        let mut sha256_context = Sha256::default();
-        sha256_context.update(email.get_canonicalized_body().as_bytes());
-        let dup_body_hash = sha256_context.finalize();
-
-        if !dup_body_hash
-            .as_slice()
-            .eq(dkim_header.body_hash.as_slice())
-        {
-            debug!("email body hash verify error");
-            return Err(1);
-        }
 
         let sig = &dkim_header.signature;
         let rsa_info = LibRSA::get_rsa_info(&n, e, &sig).map_err(|_err| 8)?;
