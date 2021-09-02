@@ -20,7 +20,6 @@ mod librsa;
 pub use code_hashes::CODE_HASH_RSA;
 #[cfg(feature = "no_std")]
 pub use librsa::*;
-#[cfg(feature = "no_std")]
 pub mod email_rs{
     pub use email_rs::*;
 }
