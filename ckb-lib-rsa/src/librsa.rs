@@ -119,19 +119,28 @@ impl LibRSA {
     }
 
     pub fn verify_dkim_signature(&self, email: &Email, e: u32, n: Vec<u8>) -> Result<(), i32> {
-        let dkim_msg = email.get_dkim_message();
-        let dkim_header = &email.dkim_header.as_ref().unwrap();
+        if email
+            .get_dkim_message()
+            .into_iter()
+            .zip(email.dkim_headers.iter())
+            .find(|(dkim_msg, dkim_header)| {
+                let handle = ||{
+                    let sig = &dkim_header.signature;
+                    let rsa_info = LibRSA::get_rsa_info(&n, e, &sig)?;
 
-        let sig = &dkim_header.signature;
-        let rsa_info = LibRSA::get_rsa_info(&n, e, &sig).map_err(|_err| 8)?;
-
-        let prefilled_data = self.load_prefilled_data().unwrap();
-        let _pub_key_hash = self
-            .validate_signature(&prefilled_data, rsa_info.as_ref(), &dkim_msg.as_bytes())
-            .map_err(|_err| {
-                debug!("dkim verify error: {}", _err);
-                1
-            })?;
+                    let prefilled_data = self.load_prefilled_data().unwrap();
+                    self.validate_signature(
+                        &prefilled_data,
+                        rsa_info.as_ref(),
+                        &dkim_msg.as_bytes(),
+                    )
+                };
+                handle().is_ok()
+            })
+            .is_none()
+        {
+            return Err(1);
+        }
 
         Ok(())
     }

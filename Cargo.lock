@@ -135,7 +135,7 @@ dependencies = [
 [[package]]
 name = "email-rs"
 version = "0.1.0"
-source = "git+https://github.com/sking789/email-rs.git#d2ae69b07b81ab2fd248272c7e4e5612efa26343"
+source = "git+https://github.com/sking789/email-rs.git?branch=multi-dkim-header#ca13ab53db47f5c3e8e0aaa56a0e647d1adc6e96"
 dependencies = [
  "base64",
 ]
@@ -152,9 +152,9 @@ dependencies = [
 
 [[package]]
 name = "libc"
-version = "0.2.101"
+version = "0.2.102"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3cb00336871be5ed2c8ed44b60ae9959dc5b9f08539422ed43f09e34ecaeba21"
+checksum = "a2a5ac8f984bfcf3a823267e5fde638acc3325f6496633a5da6bb6eb2171e103"
 
 [[package]]
 name = "molecule"
