@@ -25,7 +25,7 @@ const LOAD_PREFILLED_DATA: &[u8; 19] = b"load_prefilled_data";
 
 const SECP256K1_DATA_SIZE: usize = 1048576;
 pub struct PrefilledData(Box<[u8; SECP256K1_DATA_SIZE]>);
-pub struct Pubkey([u8; 33]);
+pub struct Pubkey([u8; 65]);
 
 impl Pubkey {
     pub fn as_slice(&self) -> &[u8] {
@@ -35,13 +35,13 @@ impl Pubkey {
 
 impl Default for Pubkey {
     fn default() -> Self {
-        let inner = [0u8; 33];
+        let inner = [0u8; 65];
         Pubkey(inner)
     }
 }
 
-impl Into<[u8; 33]> for Pubkey {
-    fn into(self) -> [u8; 33] {
+impl Into<[u8; 65]> for Pubkey {
+    fn into(self) -> [u8; 65] {
         self.0
     }
 }
