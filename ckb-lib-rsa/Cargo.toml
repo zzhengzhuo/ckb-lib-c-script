@@ -2,12 +2,12 @@
 authors = ["johnz <johnz@lay2.dev>"]
 edition = "2018"
 name = "ckb-lib-rsa"
-version = "0.1.0"
+version = "0.1.1"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-ckb-std = {version = "0.7",optional = true}
+ckb-std = {version = "0.9",optional = true}
 email-rs = {git = "https://github.com/sking789/email-rs.git"}
 sha2 = {version = "0.9.2", default-features = false}
 
