@@ -50,6 +50,39 @@ impl Into<[u8; 20]> for PubkeyHash {
         self.0
     }
 }
+
+#[link(name = "dl-c-impl")]
+extern "C" {
+    // fn load_prefilled_data(data: *mut u8, len: *mut u64) -> i32;
+    fn validate_signature_rsa(
+        prefilled_data: *const u8,
+        signature_buffer: *const u8,
+        signature_size: u64,
+        msg_buf: *const u8,
+        msg_size: u64,
+        output: *mut u8,
+        output_len: *mut u64,
+    ) -> i32;
+    // fn validate_signature_secp256k1(
+    //     prefilled_data: *const u8,
+    //     signature_buffer: *const u8,
+    //     signature_size: u64,
+    //     msg_buf: *const u8,
+    //     msg_size: u64,
+    //     output: *mut u8,
+    //     output_len: *mut u64,
+    // ) -> i32;
+    // fn validate_secp256k1_blake2b_sighash_all(output_public_key_hash: *mut u8) -> i32;
+    //     fn ckb_smt_verify(
+    //         root: *const u8,
+    //         smt_pair_len: u32,
+    //         keys: *const u8,
+    //         values: *const u8,
+    //         proof: *const u8,
+    //         proof_length: u32,
+    //     ) -> i32;
+}
+
 pub struct LibRSA {
     // validate_rsa_sighash_all: Symbol<ValidateRSASighashAll>,
     validate_signature: Symbol<ValidateSignature>,
@@ -98,9 +131,21 @@ impl LibRSA {
         let mut pubkeyhash = PubkeyHash::default();
         let mut len: u64 = pubkeyhash.0.len() as u64;
 
-        let f = &self.validate_signature;
+        // let f = &self.validate_signature;
+        // let error_code = unsafe {
+        //     f(
+        //         prefilled_data.0.as_ptr(),
+        //         signature.as_ptr(),
+        //         signature.len() as u64,
+        //         message.as_ptr(),
+        //         message.len() as u64,
+        //         pubkeyhash.0.as_mut_ptr(),
+        //         &mut len as *mut u64,
+        //     )
+        // };
+
         let error_code = unsafe {
-            f(
+            validate_signature_rsa(
                 prefilled_data.0.as_ptr(),
                 signature.as_ptr(),
                 signature.len() as u64,
