@@ -4,9 +4,9 @@ version = 3
 
 [[package]]
 name = "base64"
-version = "0.12.3"
+version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3441f0f7b02788e948e47f457ca01f1d7e6d92c693bc132c22b087d3141c03ff"
+checksum = "904dfeac50f3cdaba28fc6f57fdcddb75f49ed61346676a78c4ffe55877802fd"
 
 [[package]]
 name = "blake2b-rs"
@@ -59,6 +59,16 @@ name = "cfg-if"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
+
+[[package]]
+name = "charset"
+version = "0.1.2"
+source = "git+https://github.com/zzhengzhuo/charset.git?branch=no_std#d6b371bbc46ac3aba4a535356453c46158608a4d"
+dependencies = [
+ "base64",
+ "encoding_rs",
+ "serde",
+]
 
 [[package]]
 name = "ckb-lib-rsa"
@@ -135,9 +145,20 @@ dependencies = [
 [[package]]
 name = "email-rs"
 version = "0.1.0"
-source = "git+https://github.com/sking789/email-rs.git?branch=multi-dkim-header#ca13ab53db47f5c3e8e0aaa56a0e647d1adc6e96"
+source = "git+https://github.com/sking789/email-rs.git?branch=multi-dkim-header-get-value#575879f6d334509318b740c9dd87cc2e52046dbd"
 dependencies = [
  "base64",
+ "charset",
+ "quoted_printable",
+]
+
+[[package]]
+name = "encoding_rs"
+version = "0.8.29"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a74ea89a0a1b98f6332de42c95baff457ada66d1cb4030f9ff151b2041a1c746"
+dependencies = [
+ "cfg-if 1.0.0",
 ]
 
 [[package]]
@@ -170,6 +191,17 @@ name = "opaque-debug"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "624a8340c38c1b80fd549087862da4ba43e08858af025b236e509b6649fc13d5"
+
+[[package]]
+name = "quoted_printable"
+version = "0.4.3"
+source = "git+https://github.com/zzhengzhuo/quoted-printable.git#a6ecbe7c5cae60b8042f5b3d64377de3675ec296"
+
+[[package]]
+name = "serde"
+version = "1.0.130"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f12d06de37cf59146fbdecab66aa99f9fe4f78722e3607577a5375d66bd0c913"
 
 [[package]]
 name = "sha2"
